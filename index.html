@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PIXI Shapes - Test</title>
+  <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+<div id="ui-top" class="ui-top">
+  <div class="stat">
+    <label>Shapes:</label>
+    <input id="shapes-count" readonly />
+  </div>
+  <div class="stat">
+    <label>Total area (px²):</label>
+    <input id="shapes-area" readonly />
+  </div>
+</div>
+
+
+<div id="app-root"></div>
+
+
+<div id="ui-bottom" class="ui-bottom">
+  <div class="control-group">
+    <button id="spawn-decr">-</button>
+    <span>Spawn / sec</span>
+    <span id="spawn-value">1</span>
+    <button id="spawn-incr">+</button>
+  </div>
+
+
+  <div class="control-group">
+    <button id="grav-decr">-</button>
+    <span>Gravity</span>
+    <span id="grav-value">0.2</span>
+    <button id="grav-incr">+</button>
+  </div>
+</div>
+
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
