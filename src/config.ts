@@ -8,4 +8,4 @@ export const RECTANGLE_HEIGHT = 600;
 
 //Colors
 export const CanvasBGColor =  0x0f1724 // HEX: Inner canvas color
-export const ROOTCONFIG = {COLORS: {BG: "#1a3939"}} as const; //outer bg color
+export const ROOTCONFIG = {BG: "#1a3939"} as const; //outer bg color
