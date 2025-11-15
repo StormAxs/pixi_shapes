@@ -1,7 +1,7 @@
 {
   "name": "pixi-falling-shapes",
   "version": "1.0.0",
-  "description": "PIXI falling shapes demo — MVC + TypeScript",
+  "description": "Pixi shapes",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
