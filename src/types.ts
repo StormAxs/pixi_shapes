@@ -13,4 +13,5 @@ export interface IShapeData {
     color: number
     area: number
     sides?: number
+    hue ?: number
 }

@@ -12,6 +12,7 @@ export class Shape {
     private _color: number;
     private _area: number;
     private _sides?: number;
+    private _hue: number;
 
     constructor(data: IShapeData) {
         this._id = data.id;
@@ -25,6 +26,15 @@ export class Shape {
         this._color = data.color;
         this._area = data.area;
         this._sides = data.sides;
+        this._hue = data.hue ?? 0;
+    }
+
+    get hue(): number {
+        return this._hue;
+    }
+
+    set hue(value: number) {
+        this._hue = value;
     }
 
     get id(): string {
@@ -61,6 +71,10 @@ export class Shape {
 
     get color(): number {
         return this._color;
+    }
+
+    set color(value: number) {
+        this._color = value;
     }
 
     get area(): number {

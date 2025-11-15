@@ -9,6 +9,8 @@ export class AppController {
     private lastTime: number = 0;
     private animationFrameId: number = 0;
 
+    private rainbowEnabled: boolean = false;
+
     constructor(
         canvasWidth: number,
         canvasHeight: number,
@@ -68,6 +70,11 @@ export class AppController {
             this.shapeManager.setGravity(current + 50);
             this.uiView.updateGravity(this.shapeManager.getGravity());
         });
+
+        //ranbowwing
+        this.uiView.onRainbowToggle((enabled) => {
+            this.rainbowEnabled = enabled;
+        });
     }
 
     private start(): void {
@@ -80,7 +87,7 @@ export class AppController {
         const deltaTime = currentTime - this.lastTime;
         this.lastTime = currentTime;
 
-        this.shapeManager.update(deltaTime);
+        this.shapeManager.update(deltaTime, this.rainbowEnabled);
 
         const shapes = this.shapeManager.getShapes();
         this.pixiView.renderShapes(shapes);

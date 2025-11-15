@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { Shape } from '../model/Shape';
 import { ShapeType } from '../types';
-import {CanvasBGColor} from "../config";
+import {CanvasBGColor, InsideBorderColor} from "../config";
 
 export class PixiView {
     private app: PIXI.Application;
@@ -34,7 +34,7 @@ export class PixiView {
 
         //  border
         this.rectangleGraphics = new PIXI.Graphics();
-        this.rectangleGraphics.lineStyle(2, 0x38bdf8, 1);
+        this.rectangleGraphics.lineStyle(2, InsideBorderColor, 1);
         this.rectangleGraphics.drawRect(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
         this.container.addChild(this.rectangleGraphics);
     }
@@ -71,44 +71,28 @@ export class PixiView {
 
     private drawShape(graphics: PIXI.Graphics, shape: Shape): void {
         graphics.clear();
+
+        // просто применяем цвет (он будет меняться каждый кадр)
         graphics.beginFill(shape.color);
-        
+
         const size = shape.size;
         const halfSize = size / 2;
-        
+
         switch (shape.type) {
-            case 'circle':
-                graphics.drawCircle(0, 0, halfSize);
-                break;
-                
-            case 'ellipse':
-                graphics.drawEllipse(0, 0, halfSize, halfSize * 0.7);
-                break;
-                
-            case 'triangle':
-                this.drawPolygon(graphics, 3, halfSize);
-                break;
-                
-            case 'quad':
-                this.drawPolygon(graphics, 4, halfSize);
-                break;
-                
-            case 'pentagon':
-                this.drawPolygon(graphics, 5, halfSize);
-                break;
-                
-            case 'hexagon':
-                this.drawPolygon(graphics, 6, halfSize);
-                break;
-                
+            case 'circle': graphics.drawCircle(0, 0, halfSize); break;
+            case 'ellipse': graphics.drawEllipse(0, 0, halfSize, halfSize * 0.7); break;
+            case 'triangle': this.drawPolygon(graphics, 3, halfSize); break;
+            case 'quad': this.drawPolygon(graphics, 4, halfSize); break;
+            case 'pentagon': this.drawPolygon(graphics, 5, halfSize); break;
+            case 'hexagon': this.drawPolygon(graphics, 6, halfSize); break;
             case 'random':
                 const sides = shape.sides || 5;
                 this.drawPolygon(graphics, sides, halfSize);
                 break;
         }
-        
+
         graphics.endFill();
-        
+
         graphics.x = shape.x;
         graphics.y = shape.y;
         graphics.rotation = shape.rotation;
