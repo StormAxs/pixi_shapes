@@ -32,7 +32,6 @@ You'll be able to access application by your localhost ip
 ## Functionality
 
 - **Falling shapes**:  Random shape generation with included gravity and size
-- **Типы фигур**: Треугольник, квадрат, пятиугольник, шестиугольник, круг, эллипс, случайная фигура
 - **Shape types**: Triangle, square, pentagon, hexagon, circle, ellipse, and fully random shapes (Up to 7 rects)
 - **Interactivity**:
   - Clicking inside the rectangle spawns a new shape at the click position
@@ -63,3 +62,5 @@ MIT
 
 
 # Showcase
+
+![showcase1.png](public/showcase1.png)
