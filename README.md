@@ -3,7 +3,7 @@
 Interactive test game written in TypeScript using PIXI.js lib
 ## Requirements
 
-- Node.js (версия 16 или выше)
+- Node.js 16
 - npm или yarn
 
 ## Setup
