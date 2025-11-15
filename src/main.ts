@@ -1,5 +1,8 @@
 import { AppController } from './controller/AppController';
 import * as config from "./config";
+import { ROOTCONFIG } from "./config";
+document.documentElement.style.setProperty("--bg", ROOTCONFIG.COLORS.BG);
+
 
 
 let appController: AppController | null = null;

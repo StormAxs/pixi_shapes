@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { Shape } from '../model/Shape';
 import { ShapeType } from '../types';
+import {CanvasBGColor} from "../config";
 
 export class PixiView {
     private app: PIXI.Application;
@@ -22,7 +23,7 @@ export class PixiView {
         this.app = new PIXI.Application({
             width,
             height,
-            backgroundColor: 0x0f1724, // TODO: dbg_msg(area size and resize elements)
+            backgroundColor: CanvasBGColor,
             antialias: true
         });
 
