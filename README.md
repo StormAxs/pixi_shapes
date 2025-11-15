@@ -56,7 +56,7 @@ The project follows the MVC + OOP pattern:
 - **Vite** - build & dev-server
 - **HTML/CSS**
 
-## Лицензия
+## License
 
 MIT
 
@@ -64,3 +64,4 @@ MIT
 # Showcase
 
 ![showcase1.png](public/showcase1.png)
+![showcase2.png](public/showcase2.png)
