@@ -19,7 +19,6 @@ export class AppController {
         rectangleWidth: number,
         rectangleHeight: number
     ) {
-        // inits here
         this.shapeManager = new ShapeManager(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
         
         this.pixiView = new PixiView(canvasWidth, canvasHeight, rectangleX, rectangleY, rectangleWidth, rectangleHeight);
@@ -71,7 +70,6 @@ export class AppController {
             this.uiView.updateGravity(this.shapeManager.getGravity());
         });
 
-        //ranbowwing
         this.uiView.onRainbowToggle((enabled) => {
             this.rainbowEnabled = enabled;
         });

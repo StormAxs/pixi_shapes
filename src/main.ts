@@ -12,7 +12,7 @@ function init(): void {
     if (!appRoot) {
         console.error('App root element not found');
         return;
-    } //TODO: not sure if i have to left it here, as we always have app-root, delete mayb
+    }
 
     appController = new AppController(
         config.CANVAS_WIDTH,

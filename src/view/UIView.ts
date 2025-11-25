@@ -8,7 +8,7 @@ export class UIView {
     private gravityDecreaseBtn: HTMLElement;
     private gravityIncreaseBtn: HTMLElement;
 
-    private rainbowToggle: HTMLInputElement; // ⭐ добавлено
+    private rainbowToggle: HTMLInputElement;
 
     constructor() {
         this.countElement = document.getElementById('count-shapes')!;
@@ -20,7 +20,7 @@ export class UIView {
         this.gravityDecreaseBtn = document.getElementById('grav-decr')!;
         this.gravityIncreaseBtn = document.getElementById('grav-incr')!;
 
-        this.rainbowToggle = document.getElementById('rainbow-toggle') as HTMLInputElement; // ⭐
+        this.rainbowToggle = document.getElementById('rainbow-toggle') as HTMLInputElement;
     }
 
     updateShapeCount(count: number): void {
@@ -59,5 +59,5 @@ export class UIView {
         this.rainbowToggle.addEventListener('change', () => {
             callback(this.rainbowToggle.checked);
         });
-    } //funn;3
+    }
 }

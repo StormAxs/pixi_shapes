@@ -32,7 +32,7 @@ export class PixiView {
         this.container = new PIXI.Container();
         this.app.stage.addChild(this.container);
 
-        //  border
+
         this.rectangleGraphics = new PIXI.Graphics();
         this.rectangleGraphics.lineStyle(2, InsideBorderColor, 1);
         this.rectangleGraphics.drawRect(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
