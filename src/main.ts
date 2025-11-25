@@ -1,6 +1,8 @@
+import * as config from "./constants/config";
+import * as ui from "./constants/ui";
+
 import { AppController } from './controller/AppController';
-import * as config from "./config";
-import { ROOTCONFIG } from "./config";
+import { ROOTCONFIG } from "./constants/config";
 import { CSS_VARIABLES, DOM, DOCUMENT_READY_STATES, EVENT } from "./constants/ui";
 document.documentElement.style.setProperty(CSS_VARIABLES.background, ROOTCONFIG.BG);
 
@@ -16,12 +18,12 @@ function init(): void {
     }
 
     appController = new AppController(
-        config.CANVAS_WIDTH,
-        config.CANVAS_HEIGHT,
-        config.RECTANGLE_X,
-        config.RECTANGLE_Y,
-        config.RECTANGLE_WIDTH,
-        config.RECTANGLE_HEIGHT
+        ui.CANVAS_WIDTH,
+        ui.CANVAS_HEIGHT,
+        ui.RECTANGLE_X,
+        ui.RECTANGLE_Y,
+        ui.RECTANGLE_WIDTH,
+        ui.RECTANGLE_HEIGHT
     );
 
     const canvas = appController.getCanvas();

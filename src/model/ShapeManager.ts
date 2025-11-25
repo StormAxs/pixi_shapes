@@ -2,7 +2,7 @@ import { Shape } from './Shape';
 import { ShapeType, IShapeData, SHAPE_TYPES } from '../types';
 import { calculateArea } from "./area";
 import { utils } from 'pixi.js';
-import {RAINBOW_SPEED} from "../config";
+import {RAINBOW_SPEED} from "../constants/config";
 
 export class ShapeManager {
     private shapes: Map<string, Shape> = new Map();

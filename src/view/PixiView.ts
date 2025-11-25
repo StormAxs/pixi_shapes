@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import * as cfg  from "../config";
+import * as cfg  from "../constants/config";
 import { Shape } from '../model/Shape';
 import { ShapeType } from '../types';
 
