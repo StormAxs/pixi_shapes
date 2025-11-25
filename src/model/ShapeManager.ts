@@ -103,6 +103,13 @@ export class ShapeManager {
         return this.shapes.delete(id);
     }
 
+    changeColorByType(type: ShapeType, newColor: number): void {
+        for (const shape of this.shapes.values()) {
+            if (shape.type === type) {
+                shape.color = newColor;
+            }
+        }
+    }
 
 
 

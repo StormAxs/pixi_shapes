@@ -36,8 +36,17 @@ export class AppController {
             
             const shapeId = this.pixiView.getShapeAt(x, y);
             if (shapeId) {
-                this.shapeManager.removeShape(shapeId);
-                return;
+                if (shapeId) {
+                    const shape = this.shapeManager.getShapes().find(s => s.id === shapeId);
+                    if (shape) {
+                        const type = shape.type;
+                        this.shapeManager.removeShape(shapeId);
+
+                        const newColor = Math.random() * 0xffffff;
+                        this.shapeManager.changeColorByType(type, newColor);
+                    }
+                    return;
+                }
             }
             
             if (this.shapeManager.isPointInRectangle(x, y)) {
