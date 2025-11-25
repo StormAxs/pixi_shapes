@@ -103,20 +103,8 @@ export class ShapeManager {
         return this.shapes.delete(id);
     }
 
-    removeShapeAt(x: number, y: number, tolerance: number = 30): boolean {
-        const shapesArray = Array.from(this.shapes.values());
-        for (let i = shapesArray.length - 1; i >= 0; i--) {
-            const shape = shapesArray[i];
-            const dx = x - shape.x;
-            const dy = y - shape.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < tolerance) {
-                this.shapes.delete(shape.id);
-                return true;
-            }
-        }
-        return false;
-    }
+
+
 
     update(deltaTime: number, rainbow: boolean): void {
         this.spawnTimer += deltaTime;
@@ -128,7 +116,7 @@ export class ShapeManager {
         const shapesToRemove: string[] = [];
         for (const shape of this.shapes.values()) {
             if (rainbow) {
-                shape.hue = (shape.hue + RAINBOW_SPEED * deltaTime) % 360; //TODO: configurable rainbow
+                shape.hue = (shape.hue + RAINBOW_SPEED * deltaTime) % 360;
                 shape.color = utils.string2hex(`hsl(${shape.hue}, 100%, 50%)`);
             }
             shape.update(deltaTime, this.gravity);
