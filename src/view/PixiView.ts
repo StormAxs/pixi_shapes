@@ -1,3 +1,4 @@
+// TypeScript
 import * as PIXI from 'pixi.js';
 import { Shape } from '../model/Shape';
 import { ShapeType } from '../types';
@@ -13,6 +14,8 @@ export class PixiView {
     private rectangleWidth: number;
     private rectangleHeight: number;
     private canvasElement: HTMLCanvasElement;
+
+    private readonly drawHandlers: Record<ShapeType, (graphics: PIXI.Graphics, shape: Shape) => void>;
 
     constructor(width: number, height: number, rectangleX: number, rectangleY: number, rectangleWidth: number, rectangleHeight: number) {
         this.rectangleX = rectangleX;
@@ -32,11 +35,20 @@ export class PixiView {
         this.container = new PIXI.Container();
         this.app.stage.addChild(this.container);
 
-
         this.rectangleGraphics = new PIXI.Graphics();
         this.rectangleGraphics.lineStyle(2, InsideBorderColor, 1);
         this.rectangleGraphics.drawRect(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
         this.container.addChild(this.rectangleGraphics);
+
+        this.drawHandlers = {
+            circle: (g, s) => g.drawCircle(0, 0, s.size / 2),
+            ellipse: (g, s) => g.drawEllipse(0, 0, s.size / 2, (s.size / 2) * 0.7),
+            triangle: (g, s) => this.drawPolygon(g, 3, s.size / 2),
+            quad: (g, s) => this.drawPolygon(g, 4, s.size / 2),
+            pentagon: (g, s) => this.drawPolygon(g, 5, s.size / 2),
+            hexagon: (g, s) => this.drawPolygon(g, 6, s.size / 2),
+            random: (g, s) => this.drawPolygon(g, s.sides ?? 5, s.size / 2)
+        };
     }
 
     getCanvas(): HTMLCanvasElement {
@@ -58,7 +70,7 @@ export class PixiView {
 
         for (const shape of shapes) {
             let graphics = this.shapeGraphics.get(shape.id);
-            
+
             if (!graphics) {
                 graphics = new PIXI.Graphics();
                 this.shapeGraphics.set(shape.id, graphics);
@@ -72,24 +84,9 @@ export class PixiView {
     private drawShape(graphics: PIXI.Graphics, shape: Shape): void {
         graphics.clear();
 
-        // просто применяем цвет (он будет меняться каждый кадр)
         graphics.beginFill(shape.color);
-
-        const size = shape.size;
-        const halfSize = size / 2;
-
-        switch (shape.type) {
-            case 'circle': graphics.drawCircle(0, 0, halfSize); break;
-            case 'ellipse': graphics.drawEllipse(0, 0, halfSize, halfSize * 0.7); break;
-            case 'triangle': this.drawPolygon(graphics, 3, halfSize); break;
-            case 'quad': this.drawPolygon(graphics, 4, halfSize); break;
-            case 'pentagon': this.drawPolygon(graphics, 5, halfSize); break;
-            case 'hexagon': this.drawPolygon(graphics, 6, halfSize); break;
-            case 'random':
-                const sides = shape.sides || 5;
-                this.drawPolygon(graphics, sides, halfSize);
-                break;
-        }
+        const handler = this.drawHandlers[shape.type] ?? this.drawHandlers.quad;
+        handler(graphics, shape);
 
         graphics.endFill();
 
@@ -114,7 +111,7 @@ export class PixiView {
             const dx = x - graphics.x;
             const dy = y - graphics.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
-            
+
             if (distance < 30) {
                 return id;
             }
@@ -131,4 +128,3 @@ export class PixiView {
         this.app.destroy(true);
     }
 }
-
