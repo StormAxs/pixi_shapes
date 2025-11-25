@@ -1,3 +1,5 @@
+import {DOM, EVENT} from "../constants/ui";
+
 export class UIView {
     private countElement: HTMLElement;
     private areaElement: HTMLElement;
@@ -11,16 +13,16 @@ export class UIView {
     private rainbowToggle: HTMLInputElement;
 
     constructor() {
-        this.countElement = document.getElementById('count-shapes')!;
-        this.areaElement = document.getElementById('area-shapes')!;
-        this.spawnRateElement = document.getElementById('spawn-rate')!;
-        this.gravityElement = document.getElementById('gravity')!;
-        this.spawnDecreaseBtn = document.getElementById('spawn-decr')!;
-        this.spawnIncreaseBtn = document.getElementById('spawn-incr')!;
-        this.gravityDecreaseBtn = document.getElementById('grav-decr')!;
-        this.gravityIncreaseBtn = document.getElementById('grav-incr')!;
+        this.countElement = document.getElementById(DOM.countShapes)!;
+        this.areaElement = document.getElementById(DOM.areaShapes)!;
+        this.spawnRateElement = document.getElementById(DOM.spawnRate)!;
+        this.gravityElement = document.getElementById(DOM.gravity)!;
+        this.spawnDecreaseBtn = document.getElementById(DOM.spawnDecrease)!;
+        this.spawnIncreaseBtn = document.getElementById(DOM.spawnIncrease)!;
+        this.gravityDecreaseBtn = document.getElementById(DOM.gravityDecrease)!;
+        this.gravityIncreaseBtn = document.getElementById(DOM.gravityIncrease)!;
 
-        this.rainbowToggle = document.getElementById('rainbow-toggle') as HTMLInputElement;
+        this.rainbowToggle = document.getElementById(DOM.rainbowToggle) as HTMLInputElement;
     }
 
     updateShapeCount(count: number): void {
@@ -40,23 +42,23 @@ export class UIView {
     }
 
     onSpawnDecrease(callback: () => void): void {
-        this.spawnDecreaseBtn.addEventListener('click', callback);
+        this.spawnDecreaseBtn.addEventListener(EVENT.click, callback);
     }
 
     onSpawnIncrease(callback: () => void): void {
-        this.spawnIncreaseBtn.addEventListener('click', callback);
+        this.spawnIncreaseBtn.addEventListener(EVENT.click, callback);
     }
 
     onGravityDecrease(callback: () => void): void {
-        this.gravityDecreaseBtn.addEventListener('click', callback);
+        this.gravityDecreaseBtn.addEventListener(EVENT.click, callback);
     }
 
     onGravityIncrease(callback: () => void): void {
-        this.gravityIncreaseBtn.addEventListener('click', callback);
+        this.gravityIncreaseBtn.addEventListener(EVENT.click, callback);
     }
 
     onRainbowToggle(callback: (enabled: boolean) => void): void {
-        this.rainbowToggle.addEventListener('change', () => {
+        this.rainbowToggle.addEventListener(EVENT.change, () => {
             callback(this.rainbowToggle.checked);
         });
     }

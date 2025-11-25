@@ -1,14 +1,15 @@
 import { AppController } from './controller/AppController';
 import * as config from "./config";
 import { ROOTCONFIG } from "./config";
-document.documentElement.style.setProperty("--bg", ROOTCONFIG.BG);
+import { CSS_VARIABLES, DOM, DOCUMENT_READY_STATES, EVENT } from "./constants/ui";
+document.documentElement.style.setProperty(CSS_VARIABLES.background, ROOTCONFIG.BG);
 
 
 
 let appController: AppController | null = null;
 
 function init(): void {
-    const appRoot = document.getElementById('app-root');
+    const appRoot = document.getElementById(DOM.appRoot);
     if (!appRoot) {
         console.error('App root element not found');
         return;
@@ -27,13 +28,13 @@ function init(): void {
     appRoot.appendChild(canvas);
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+if (document.readyState === DOCUMENT_READY_STATES.loading) {
+    document.addEventListener(EVENT.domContentLoaded, init);
 } else {
     init();
 }
 
-window.addEventListener('beforeunload', () => {
+window.addEventListener(EVENT.beforeUnload, () => {
     if (appController) {
         appController.destroy();
     }

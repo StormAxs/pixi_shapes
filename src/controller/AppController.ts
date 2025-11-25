@@ -1,6 +1,7 @@
 import { ShapeManager } from '../model/ShapeManager';
 import { PixiView } from '../view/PixiView';
 import { UIView } from '../view/UIView';
+import { EVENT } from "../constants/ui";
 
 export class AppController {
     private shapeManager: ShapeManager;
@@ -29,7 +30,7 @@ export class AppController {
     }
 
     private setupEventListeners(): void { //click
-        this.pixiView.getCanvas().addEventListener('click', (e) => {
+        this.pixiView.getCanvas().addEventListener(EVENT.click, (e) => {
             const rect = this.pixiView.getCanvas().getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
