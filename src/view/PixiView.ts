@@ -40,13 +40,13 @@ export class PixiView {
         this.container.addChild(this.rectangleGraphics);
 
         this.drawHandlers = {
-            circle: (g, s) => g.drawCircle(0, 0, s.size / 2),
-            ellipse: (g, s) => g.drawEllipse(0, 0, s.size / 2, (s.size / 2) * 0.7),
-            triangle: (g, s) => this.drawPolygon(g, 3, s.size / 2),
-            quad: (g, s) => this.drawPolygon(g, 4, s.size / 2),
-            pentagon: (g, s) => this.drawPolygon(g, 5, s.size / 2),
-            hexagon: (g, s) => this.drawPolygon(g, 6, s.size / 2),
-            random: (g, s) => this.drawPolygon(g, s.sides ?? 5, s.size / 2)
+            [ShapeType.Circle]: (g, s) => g.drawCircle(0, 0, s.size / 2),
+            [ShapeType.Ellipse]: (g, s) => g.drawEllipse(0, 0, s.size / 2, (s.size / 2) * 0.7),
+            [ShapeType.Triangle]: (g, s) => this.drawPolygon(g, 3, s.size / 2),
+            [ShapeType.Quad]: (g, s) => this.drawPolygon(g, 4, s.size / 2),
+            [ShapeType.Pentagon]: (g, s) => this.drawPolygon(g, 5, s.size / 2),
+            [ShapeType.Hexagon]: (g, s) => this.drawPolygon(g, 6, s.size / 2),
+            [ShapeType.Random]: (g, s) => this.drawPolygon(g, s.sides ?? 5, s.size / 2)
         };
     }
 
@@ -84,7 +84,7 @@ export class PixiView {
         graphics.clear();
 
         graphics.beginFill(shape.color);
-        const handler = this.drawHandlers[shape.type] ?? this.drawHandlers.quad;
+        const handler = this.drawHandlers[shape.type] ?? this.drawHandlers[ShapeType.Quad];
         handler(graphics, shape);
 
         graphics.endFill();

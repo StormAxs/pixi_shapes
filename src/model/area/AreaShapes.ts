@@ -4,7 +4,7 @@ import { ShapeType } from '../../types';
 
 export class CircleArea implements AreaCalculator {
     supports(type: ShapeType): boolean {
-        return type === 'circle';
+        return type === ShapeType.Circle;
     }
 
     area(size: number): number {
@@ -14,7 +14,7 @@ export class CircleArea implements AreaCalculator {
 }
 
 export class EllipseArea implements AreaCalculator {
-    supports(type: ShapeType): boolean { return type === 'ellipse'; }
+    supports(type: ShapeType): boolean { return type === ShapeType.Ellipse; }
     area(size: number): number {
         const r = size / 2;
         return Math.PI * r * (r * 0.7);
@@ -22,21 +22,21 @@ export class EllipseArea implements AreaCalculator {
 }
 
 export class TriangleArea implements AreaCalculator {
-    supports(type: ShapeType): boolean { return type === 'triangle'; }
+    supports(type: ShapeType): boolean { return type === ShapeType.Triangle; }
     area(size: number): number {
         return (Math.sqrt(3) / 4) * size * size;
     }
 }
 
 export class QuadArea implements AreaCalculator {
-    supports(type: ShapeType): boolean { return type === 'quad'; }
+    supports(type: ShapeType): boolean { return type === ShapeType.Quad; }
     area(size: number): number {
         return size * size;
     }
 }
 
 export class PentagonArea implements AreaCalculator {
-    supports(type: ShapeType): boolean { return type === 'pentagon'; }
+    supports(type: ShapeType): boolean { return type === ShapeType.Pentagon; }
     area(size: number): number {
         return (5 / 4) * size * size * (1 / Math.tan(Math.PI / 5));
     }
@@ -44,7 +44,7 @@ export class PentagonArea implements AreaCalculator {
 
 export class HexagonArea implements AreaCalculator {
     supports(type: ShapeType): boolean {
-        return type === 'hexagon';
+        return type === ShapeType.Hexagon;
     }
 
     area(size: number): number {
@@ -54,7 +54,7 @@ export class HexagonArea implements AreaCalculator {
 }
 
 export class RandomArea implements AreaCalculator {
-    supports(type: ShapeType): boolean { return type === 'random'; }
+    supports(type: ShapeType): boolean { return type === ShapeType.Random; }
     area(size: number, sides?: number): number {
         if (sides !== undefined) {
             return (sides / 4) * size * size * (1 / Math.tan(Math.PI / sides));

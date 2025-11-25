@@ -1,4 +1,22 @@
-export type ShapeType = 'triangle' | 'quad' | 'pentagon' | 'hexagon' | 'circle' | 'ellipse' | 'random'
+export enum ShapeType {
+    Triangle = 'triangle',
+    Quad = 'quad',
+    Pentagon = 'pentagon',
+    Hexagon = 'hexagon',
+    Circle = 'circle',
+    Ellipse = 'ellipse',
+    Random = 'random'
+}
+
+export const SHAPE_TYPES: readonly ShapeType[] = [
+    ShapeType.Triangle,
+    ShapeType.Quad,
+    ShapeType.Pentagon,
+    ShapeType.Hexagon,
+    ShapeType.Circle,
+    ShapeType.Ellipse,
+    ShapeType.Random
+] as const;
 
 
 export interface IShapeData {

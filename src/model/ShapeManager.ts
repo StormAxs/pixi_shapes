@@ -1,5 +1,5 @@
 import { Shape } from './Shape';
-import { ShapeType, IShapeData } from '../types';
+import { ShapeType, IShapeData, SHAPE_TYPES } from '../types';
 import { calculateArea } from "./area";
 import { utils } from 'pixi.js';
 import {RAINBOW_SPEED} from "../config";
@@ -55,10 +55,10 @@ export class ShapeManager {
 
     createRandomShape(x?: number, y?: number): Shape {
         const id = `shape_${Date.now()}_${Math.random()}`;
-        const types: ShapeType[] = ['triangle', 'quad', 'pentagon', 'hexagon', 'circle', 'ellipse', 'random'];
-        let type = types[Math.floor(Math.random() * types.length)];
+        const randomIndex = Math.floor(Math.random() * SHAPE_TYPES.length);
+        let type = SHAPE_TYPES[randomIndex];
         let sides: number | undefined = undefined;
-        if (type === 'random') {
+        if (type === ShapeType.Random) {
             const hash = this.simpleHash(id);
             sides = 3 + (hash % 5);
         }
