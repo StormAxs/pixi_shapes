@@ -1,8 +1,7 @@
-// TypeScript
 import * as PIXI from 'pixi.js';
+import * as cfg  from "../config";
 import { Shape } from '../model/Shape';
 import { ShapeType } from '../types';
-import {CanvasBGColor, InsideBorderColor} from "../config";
 
 export class PixiView {
     private app: PIXI.Application;
@@ -26,7 +25,7 @@ export class PixiView {
         this.app = new PIXI.Application({
             width,
             height,
-            backgroundColor: CanvasBGColor,
+            backgroundColor: cfg.CanvasBGColor,
             antialias: true
         });
 
@@ -36,7 +35,7 @@ export class PixiView {
         this.app.stage.addChild(this.container);
 
         this.rectangleGraphics = new PIXI.Graphics();
-        this.rectangleGraphics.lineStyle(2, InsideBorderColor, 1);
+        this.rectangleGraphics.lineStyle(2, cfg.InsideBorderColor, 1);
         this.rectangleGraphics.drawRect(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
         this.container.addChild(this.rectangleGraphics);
 
