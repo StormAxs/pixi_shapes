@@ -1,5 +1,6 @@
 import { Shape } from './Shape';
 import { ShapeType, IShapeData } from '../types';
+import { calculateArea } from "./area";
 import { utils } from 'pixi.js';
 import {RAINBOW_SPEED} from "../config";
 
@@ -68,7 +69,7 @@ export class ShapeManager {
         const vx = (Math.random() - 0.5) * 50;
         const vy = 0;
         const rotation = Math.random() * Math.PI * 2;
-        const area = this.calculateArea(type, size, sides);
+        const area = calculateArea(type, size, sides);
         const shapeData: IShapeData = {
             id,
             type,
@@ -96,31 +97,6 @@ export class ShapeManager {
             hash = hash & hash;
         }
         return Math.abs(hash);
-    }
-
-    private calculateArea(type: ShapeType, size: number, sides?: number): number {
-        const radius = size / 2;
-        switch (type) {
-            case 'circle':
-                return Math.PI * radius * radius;
-            case 'ellipse':
-                return Math.PI * radius * (radius * 0.7);
-            case 'triangle':
-                return (Math.sqrt(3) / 4) * size * size;
-            case 'quad':
-                return size * size;
-            case 'pentagon':
-                return (5 / 4) * size * size * (1 / Math.tan(Math.PI / 5));
-            case 'hexagon':
-                return (3 * Math.sqrt(3) / 2) * radius * radius;
-            case 'random':
-                if (sides !== undefined) {
-                    return (sides / 4) * size * size * (1 / Math.tan(Math.PI / sides));
-                }
-                return Math.PI * radius * radius * 0.8;
-            default:
-                return size * size;
-        }
     }
 
     removeShape(id: string): boolean {
