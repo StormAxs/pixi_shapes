@@ -102,10 +102,14 @@ export class Shape {
     }
 
     update(deltaTime: number, gravity: number): void {
-        this._vy += gravity * deltaTime;
+        const approachSpeed = 1;
+        const targetVy = gravity;
+        const lerp = Math.min(1, approachSpeed * deltaTime);
+        this._vy += (targetVy - this._vy) * lerp;
+
         this._x += this._vx * deltaTime;
-        this._y += this._vy * deltaTime;
-        this._rotation += 0.5 * deltaTime;
+        this._y += this._vy * deltaTime / 2;
+        this._rotation += 0.4 * deltaTime;
     }
 
     toData(): IShapeData {
