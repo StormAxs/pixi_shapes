@@ -27,7 +27,7 @@ export class PixiView {
             antialias: true
         });
 
-        this.canvasElement = (this.app.view as any) as HTMLCanvasElement;
+        this.canvasElement = this.app.view as HTMLCanvasElement;
 
         this.container = new PIXI.Container();
         this.app.stage.addChild(this.container);
