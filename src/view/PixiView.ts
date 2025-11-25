@@ -62,6 +62,9 @@ export class PixiView {
         const currentIds = new Set(shapes.map(s => s.id));
         for (const [id, graphics] of this.shapeGraphics.entries()) {
             if (!currentIds.has(id)) {
+                if (graphics.parent) {
+                    graphics.parent.removeChild(graphics);
+                }
                 graphics.destroy();
                 this.shapeGraphics.delete(id);
             }
@@ -120,9 +123,15 @@ export class PixiView {
 
     destroy(): void {
         for (const graphics of this.shapeGraphics.values()) {
+            if (graphics.parent) {
+                graphics.parent.removeChild(graphics);
+            }
             graphics.destroy();
         }
         this.shapeGraphics.clear();
+        if (this.rectangleGraphics.parent) {
+            this.rectangleGraphics.parent.removeChild(this.rectangleGraphics);
+        }
         this.rectangleGraphics.destroy();
         this.app.destroy(true);
     }
